@@ -21,6 +21,8 @@ public class SoundManager {
 
     // a map has id:sound key value pair, to track the sounds on the manager
     private HashMap<Integer, MediaPlayer> map = new HashMap<>();
+    private HashMap<Integer, Float> volMap = new HashMap<>();
+
     private int mainSoundId = 1;
 
     private boolean isMuted = false; // Flag to track mute state
@@ -48,8 +50,10 @@ public class SoundManager {
         BackgroundSoundLoop sound = new BackgroundSoundLoop(context, id);
         sound.execute();
         MediaPlayer mp = sound.makeSoundInLoop();
-        setVolume(mp);
+        setVolume(counter);
         this.map.put(counter, mp);
+        this.volMap.put(counter, 1.0f);
+
         return counter;
     }
     public int makeSoundNotInLoop(Context context, int id){
@@ -58,8 +62,9 @@ public class SoundManager {
         BackgroundSoundNoLoop sound = new BackgroundSoundNoLoop(context, id);
         sound.execute();
         MediaPlayer mp = sound.makeSoundNoLoop();
-        setVolume(mp);
+        setVolume(counter);
         this.map.put(counter, mp);
+        this.volMap.put(counter, 1.0f);
         return counter;
     }
 
@@ -130,14 +135,20 @@ public class SoundManager {
     public void toggleMute() {
         isMuted = !isMuted;
         for (Map.Entry<Integer, MediaPlayer> entry: this.map.entrySet()) {
-            MediaPlayer sound = entry.getValue();
-            if ( sound == null || !sound.isPlaying() ) continue;
-            setVolume(sound);
+            setVolume(entry.getKey());
         }
     }
-    private void setVolume(MediaPlayer sound){
-        float volume = isMuted ? 0.0f : 1.0f;
+    private void setVolume(int num){
+        float volume = isMuted ? 0.0f : volMap.get(num);
+        MediaPlayer sound = this.map.get(num);
+        if ( sound == null || !sound.isPlaying() ) return;
         sound.setVolume(volume, volume);
+    }
+    public void setVolume(int num, float volume){
+        if ( volume > 1.0) volume = 1.0F;
+        if ( volume < 0 ) volume = 0;
+        this.volMap.put(num, volume);
+        this.map.get(num).setVolume(volume, volume);
     }
 }
 
