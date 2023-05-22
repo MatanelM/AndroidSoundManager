@@ -70,7 +70,11 @@ public class SoundManager {
 
     public void stopSound(int num){
         if (  this.map.get(num) != null &&  this.map.get(num).isPlaying())
+        {
             this.map.get(num).stop();
+            this.map.get(num).release();
+            this.map.remove(num);
+        }
     }
 
     public void stopAllSounds(){
