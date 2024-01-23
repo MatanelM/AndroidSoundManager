@@ -44,7 +44,7 @@ public class SoundManager {
         return _instance;
     }
 
-    public int makeSoundInLoop(Context context, int id){
+    public int playInLoop(Context context, int id){
         SoundManager.counter += 1;
 
         BackgroundSoundLoop sound = new BackgroundSoundLoop(context, id);
@@ -57,7 +57,7 @@ public class SoundManager {
         return counter;
     }
 
-    public int makeSoundNotInLoop(Context context, int id){
+    public int playOnce(Context context, int id){
         SoundManager.counter += 1;
 
         BackgroundSoundNoLoop sound = new BackgroundSoundNoLoop(context, id);
@@ -90,7 +90,7 @@ public class SoundManager {
     }
 
     public void startMainSound(Context context, int id){
-        this.mainSoundId = makeSoundInLoop(context, id);
+        this.mainSoundId = playInLoop(context, id);
     }
 
     public void pauseSound(int num){

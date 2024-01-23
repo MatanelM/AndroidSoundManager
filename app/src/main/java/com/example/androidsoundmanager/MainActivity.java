@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
 
         button1.setOnClickListener(l -> {
-            SoundManager.getInstance().makeSoundNotInLoop(this, R.raw.arcade);
+            SoundManager.getInstance().playOnce(this, R.raw.arcade);
         });
 
 
         button2.setOnClickListener(l -> {
-            mainSoundId = SoundManager.getInstance().makeSoundInLoop(this, R.raw.main);
+            mainSoundId = SoundManager.getInstance().playInLoop(this, R.raw.main);
 
         });
         button3.setOnClickListener(l -> {
