@@ -50,21 +50,23 @@ public class SoundManager {
         BackgroundSoundLoop sound = new BackgroundSoundLoop(context, id);
         sound.execute();
         MediaPlayer mp = sound.makeSoundInLoop();
-        setVolume(counter);
         this.map.put(counter, mp);
         this.volMap.put(counter, 1.0f);
+        setVolume(counter);
 
         return counter;
     }
+
     public int makeSoundNotInLoop(Context context, int id){
         SoundManager.counter += 1;
 
         BackgroundSoundNoLoop sound = new BackgroundSoundNoLoop(context, id);
         sound.execute();
         MediaPlayer mp = sound.makeSoundNoLoop();
-        setVolume(counter);
         this.map.put(counter, mp);
         this.volMap.put(counter, 1.0f);
+        setVolume(counter);
+
         return counter;
     }
 
