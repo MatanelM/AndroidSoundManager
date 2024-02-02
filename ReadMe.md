@@ -19,12 +19,23 @@ SoundManager provides a module that simplifies this problem. Its letting you rea
 
 ### Getting Started
 
-* <b> Download and add the SoundManager library to your Android project's dependencies: </b> clone the repository and import a new module to you project. After importing the SoundManager library enter the project's `build.gradle` file and add the following:
+* <b> Download and add the SoundManager library to your Android project's dependencies: </b> Add it in your root setting.gradle at the end of repositories:
+```
+dependencyResolutionManagement {
+      repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+      repositories {
+            mavenCentral()
+            maven { url 'https://jitpack.io' }
+      }
+}
+```
+
+<b> Step 2. Add the dependency </b> Add it in your app build.gradle at the end of dependencies:
 ```
 dependencies {
-implementation project(":SoundManager")
-...
+        implementation 'com.github.MatanelM:AndroidSoundManager:2.2.3'
 }
+
 ```
 
 * <b> Initialize the SoundManager instance in your application's entry point: </b> Initialization can be performed in the onCreate() method of the Application class or the main activity. Pick which method you like and add the following:
