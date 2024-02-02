@@ -1,5 +1,6 @@
 
 ![WhatsApp Image 2023-05-15 at 00 42 03](https://github.com/MatanelM/AndroidSoundManager/assets/33670032/6a2eb45c-4b96-44d2-8b86-1f97d6968e7d)
+[![](https://jitpack.io/v/MatanelM/AndroidSoundManager.svg)](https://jitpack.io/#MatanelM/AndroidSoundManager)
 
 # SoundManager
 
