@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 }
 ```
 
-<b> Step 2. Add the dependency </b> Add it in your app build.gradle at the end of dependencies:
+<b> Step 2. Add the dependency: </b> Add it in your app build.gradle at the end of dependencies:
 ```
 dependencies {
         implementation 'com.github.MatanelM:AndroidSoundManager:2.2.3'
