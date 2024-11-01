@@ -11,7 +11,7 @@ class SoundManager {
     private var isMuted = false
 
     companion object {
-        private var counter = 0
+        private var counter = 2
         private var instance: SoundManager? = null
 
         @Synchronized
@@ -32,26 +32,28 @@ class SoundManager {
     fun isMuted(): Boolean = isMuted
 
     fun playInLoop(context: Context, id: Int): Int {
-        counter += 1
+        
 
         val sound = BackgroundSoundLoop(context, id)
         val mp = sound.makeSoundInLoop()
         map[counter] = mp
-        volMap[counter] = 1.0f
+        if (isMuted) volMap[counter] = 0.0f
+        else volMap[counter] = 1.0f
         setVolume(counter)
-
+        counter += 1
         return counter
     }
 
     fun playOnce(context: Context, id: Int): Int {
-        counter += 1
+        
 
         val sound = BackgroundSoundNoLoop(context, id)
         val mp = sound.makeSoundNoLoop()
         map[counter] = mp
-        volMap[counter] = 1.0f
+        if (isMuted) volMap[counter] = 0.0f
+        else volMap[counter] = 1.0f
         setVolume(counter)
-
+        counter += 1
         return counter
     }
 
